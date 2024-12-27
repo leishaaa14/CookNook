@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sign Up - CookNook</title>
+  <link rel="stylesheet" href="style3.css">
+</head>
+<body>
+  <div class="signup-container">
+    <header>
+      <h1>Sign Up for CookNook</h1>
+      <p>Create your account to explore personalized recipes!</p>
+    </header>
+    
+    <main>
+      <form id="signup-form" class="signup-form">
+        <!-- Full Name -->
+        <div class="form-group">
+          <label for="full-name" style="color: #735b04;">Full Name</label>
+          <input type="text" id="full-name" placeholder="Enter your full name" required>
+        </div>
+
+        <!-- Email -->
+        <div class="form-group">
+          <label for="email" style="color: #735b04;">Email Address</label>
+          <input type="email" id="email" placeholder="Enter your email" required>
+        </div>
+
+        <!-- Password -->
+        <div class="form-group">
+          <label for="password" style="color: #735b04;">Password</label>
+          <input type="password" id="password" placeholder="Enter your password" required>
+        </div>
+
+        <!-- Confirm Password -->
+        <div class="form-group">
+          <label for="confirm-password" style="color: #735b04;">Confirm Password</label>
+          <input type="password" id="confirm-password" placeholder="Confirm your password" required>
+        </div>
+
+        <!-- Allergy Information -->
+        <div class="form-group">
+          <label for="allergy-info" style="color: #735b04;">Allergy Information (Optional)</label>
+          <textarea 
+            id="allergy-info" 
+            placeholder="e.g., Peanut allergy, Gluten-free" 
+            rows="3">
+          </textarea>
+        </div>
+
+        <!-- Food Preferences -->
+        <div class="form-group">
+          <label style="color: #735b04;">Preferred Food Components</label>
+          <div class="checkbox-group">
+            <label style="color:#666;">
+              <input type="checkbox" id="protein" value="Protein"> Protein
+            </label>
+            <label style="color:#666;">
+              <input type="checkbox" id="carbs" value="Carbs"> Carbs
+            </label>
+            <label style="color:#666;">
+              <input type="checkbox" id="fats" value="Fats"> Fats
+            </label>
+            <label style="color:#666;">
+              <input type="checkbox" id="fiber" value="Fiber"> Fiber
+            </label>
+          </div>
+        </div>
+
+        <!-- Submit Button -->
+        <div class="form-actions">
+          <button type="submit" class="btn-primary">Sign Up</button>
+        </div>
+      </form>
+    </main>
+  </div>
+
+  <script src="signup.js"></script>
+</body>
+</html>

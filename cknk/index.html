@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AI-Powered Recipe Finder</title>
+  <link rel="stylesheet" href="styles.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Imperial+Script&family=Playwrite+NO+Guides&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&icon_names=account_circle"  />
+</head>
+<body>
+  
+  <header class="navbar">
+    <nav>
+      <a href="home.html" class="nav-logo">CookNook</a>
+      <ul class="nav-links">
+        <span class="material-symbols-outlined" style="font-size: 4rem;color: aliceblue;"><a href="" style="color: aliceblue;">
+          account_circle</a>
+          </span>
+        <li><a href="index.html" class="nav-item">Home</a></li>
+        <li><a href="about.html" class="nav-item">About</a></li>
+        <li><a href="contact.html" class="nav-item">Contact</a></li>
+      </ul>
+    </nav>
+  </header>
+  <img class="hero-image" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSOGluobLHiQIOM9No1YXiBoy46wz_tTi5yeg&s">
+
+  <div class="info-section">
+    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQk_18n5XtLH5CgfdD3oKdw5-2LQgp56VypeQ&s" alt="Healthy Food">
+    <div class="info-text">
+      <h2>About the Project</h2>
+      <p>
+        Welcome to <b>CookNook</b>! This project is designed to help users explore delicious recipes with ease.
+        Simply enter the ingredients you have, and let our platform find amazing recipes for you.
+        Whether you're a novice cook or a culinary expert, CookNook is your companion in the kitchen.
+      </p>
+      <p>
+        With a user-friendly interface and the power of modern APIs, CookNook ensures that finding your next meal
+        is as delightful as cooking it.
+      </p>
+    </div>
+  </div>
+
+  <div class="container">
+    <header>
+      <h1>AI-Powered Recipe Finder</h1>
+      <p>Find recipes based on the ingredients you have</p>
+    </header>
+    <main>
+      <!-- <section class="input-section">
+        <h2>Select Your Ingredients</h2>
+        <div class="ingredients-input">
+          <input 
+            type="text" 
+            id="ingredient" 
+            placeholder="Type an ingredient (e.g., Chicken)" 
+          />
+          <button id="add-ingredient">Add</button>
+        </div>
+        <div class="selected-ingredients">
+          <h3>Selected Ingredients:</h3>
+          <ul id="ingredient-list"></ul>
+        </div>
+        <button id="search-recipes" class="btn-primary">Search Recipes</button>
+      </section> -->
+      <section class="input-section">
+        <h2>Select Your Ingredients</h2>
+        <div class="ingredients-input">
+          <input 
+            type="text" 
+            id="ingredient" 
+            placeholder="Type an ingredient (e.g., Chicken)" 
+          />
+          <button id="add-ingredient">Add</button>
+        </div>
+        <div class="selected-ingredients">
+          <h3>Selected Ingredients:</h3>
+          <ul id="ingredient-list"></ul>
+        </div>
+      </section>
+  
+     
+      <!-- <section class="calorie-section">
+        <h2>Set Calorie Limit</h2>
+        <div class="calorie-input">
+          <label for="calorie-limit">Max Calories (per serving):</label>
+          <input 
+            type="number" 
+            id="calorie-limit" 
+            placeholder="e.g., 500" 
+          />
+        </div>
+      </section>
+  
+   
+      <section class="time-section">
+        <h2>Set Time Duration</h2>
+        <div class="time-input">
+          <label for="time-limit">Max Cooking Time (in minutes):</label>
+          <input 
+            type="number" 
+            id="time-limit" 
+            placeholder="e.g., 30" 
+          />
+        </div>
+      </section> -->
+
+      <section class="filter-section">
+        <h2>Set Your Filters</h2>
+        <div class="filters-box">
+          <!-- Calorie Limit -->
+          <div class="filter-item">
+            <label for="calorie-limit">Max Calories (per serving):</label>
+            <input 
+              type="number" 
+              id="calorie-limit" 
+              placeholder="e.g., 500" 
+            />
+          </div>
+      
+          <!-- Time Limit -->
+          <div class="filter-item">
+            <label for="time-limit">Max Cooking Time (in minutes):</label>
+            <input 
+              type="number" 
+              id="time-limit" 
+              placeholder="e.g., 30" 
+            />
+          </div>
+        </div>
+      </section>
+      
+  
+      <button id="search-recipes" class="btn-primary">Search Recipes</button>
+
+      <section class="recipes-section" id="recipes-section">
+        <h2>Recipes</h2>
+        <div id="recipes-container"></div>
+      </section>
+    </main>
+  </div>
+
+  <footer>
+    <p>Powered by Spoonacular API</p>
+  </footer>
+
+  <script src="script.js">
+    
+    // JavaScript for the shrinking header
+    const header = document.getElementsByClassName("navbar");
+    const infoBox = document.getElementsByClassName("info-section");
+    let lastScrollY = 0;
+
+    // Shrinking Header Logic
+    window.addEventListener("scroll", () => {
+      const currentScrollY = window.scrollY;
+
+      if (currentScrollY > lastScrollY && currentScrollY > 50) {
+        header.classList.add("shrink");
+      } else if (currentScrollY < lastScrollY) {
+        header.classList.remove("shrink");
+      }
+
+      lastScrollY = currentScrollY;
+
+      // Dynamic Box Resizing Logic
+      const rect = infoBox.getBoundingClientRect();
+      const windowHeight = window.innerHeight;
+
+      if (rect.top < windowHeight && rect.bottom > 0) {
+        const distanceToCenter = Math.abs(rect.top + rect.height / 2 - windowHeight / 2);
+        const scaleFactor = Math.max(1, 1.5 - distanceToCenter / windowHeight);
+        infoBox.style.transform = `scale(${scaleFactor})`;
+      }
+    });
+  
+  </script>
+</body>
+</html>
+
+
+ 

@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Login - CookNook</title>
+  <link rel="stylesheet" href="styles2.css">
+ 
+</head>
+<body>
+    
+  <div class="login-container">
+    <header>
+      <h1>Welcome to CookNook</h1>
+      <p>Your personalized recipe assistant</p>
+    </header>
+    
+    <main>
+      <form class="login-form">
+        <!-- Email -->
+        <div class="form-group">
+          <label for="email" style="color: #735b04;">Email Address</label>
+          <input type="email" id="email" placeholder="Enter your email" required>
+        </div>
+
+        <!-- Password -->
+        <div class="form-group">
+          <label for="password" style="color: #735b04;">Password</label>
+          <input type="password" id="password" placeholder="Enter your password" required>
+        </div>
+
+        <!-- Remember Me and Forgot Password -->
+        <div class="form-options">
+          <label style="color: dimgrey;">
+            <input type="checkbox" id="remember-me" > Remember Me
+          </label>
+          <a href="#" class="forgot-password">Forgot Password?</a>
+        </div>
+
+        <!-- Health and Allergy Info (Optional) -->
+        <!-- <div class="form-group">
+          <label for="health-info" style="color: #735b04;">Health or Allergy Info (Optional)</label>
+          <textarea 
+            id="health-info" 
+            placeholder="e.g., Gluten-free, Peanut allergy" 
+            rows="3">
+          </textarea>
+        </div> -->
+
+        <!-- Buttons -->
+        <div class="form-actions">
+          <button type="submit" class="btn-primary">Sign In</button>
+          <p>Don't have an account? <a href="register.html">Sign Up</a></p>
+        </div>
+      </form>
+    </main>
+  </div>
+</body>
+</html>
