@@ -1,0 +1,173 @@
+:root {
+  --bg-primary: #0f0a04;
+  --bg-secondary: #1a1206;
+  --bg-card: #211709;
+  --bg-elevated: #2a1f0c;
+  --border: #3d2e14;
+  --border-light: #4a3820;
+
+  --amber: #c8832a;
+  --amber-light: #e09a3a;
+  --amber-dim: #8a5a1a;
+  --cream: #f5e6c8;
+  --cream-dim: #c4ae87;
+  --cream-muted: #8a7a5e;
+  --red: #e05a3a;
+  --green: #5a9a5a;
+  --green-light: #7abf7a;
+
+  --text-primary: #f5e6c8;
+  --text-secondary: #c4ae87;
+  --text-muted: #8a7a5e;
+
+  --font-display: 'Playfair Display', Georgia, serif;
+  --font-body: 'DM Sans', system-ui, sans-serif;
+
+  --radius-sm: 8px;
+  --radius-md: 14px;
+  --radius-lg: 20px;
+  --radius-xl: 28px;
+
+  --shadow-card: 0 4px 24px rgba(0,0,0,0.4);
+  --shadow-glow: 0 0 32px rgba(200,131,42,0.15);
+  --transition: all 0.2s ease;
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  background: var(--bg-primary);
+  color: var(--text-primary);
+  font-family: var(--font-body);
+  font-size: 15px;
+  line-height: 1.6;
+  min-height: 100vh;
+  background-image:
+    radial-gradient(ellipse 80% 50% at 50% -20%, rgba(200,131,42,0.08) 0%, transparent 60%),
+    url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23c8832a' fill-opacity='0.02'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+}
+
+a { color: inherit; text-decoration: none; }
+button { cursor: pointer; font-family: var(--font-body); }
+input, textarea, select { font-family: var(--font-body); }
+img { max-width: 100%; display: block; }
+
+/* Scrollbar */
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: var(--bg-secondary); }
+::-webkit-scrollbar-thumb { background: var(--border-light); border-radius: 3px; }
+::-webkit-scrollbar-thumb:hover { background: var(--amber-dim); }
+
+/* Utilities */
+.container {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 22px;
+  border-radius: var(--radius-md);
+  font-weight: 500;
+  font-size: 14px;
+  border: none;
+  transition: var(--transition);
+  white-space: nowrap;
+}
+.btn-primary {
+  background: var(--amber);
+  color: #0f0a04;
+  font-weight: 600;
+}
+.btn-primary:hover { background: var(--amber-light); transform: translateY(-1px); box-shadow: 0 4px 16px rgba(200,131,42,0.35); }
+.btn-secondary {
+  background: transparent;
+  color: var(--cream);
+  border: 1px solid var(--border-light);
+}
+.btn-secondary:hover { border-color: var(--amber); color: var(--amber); }
+.btn-ghost {
+  background: transparent;
+  color: var(--text-secondary);
+  padding: 8px 12px;
+}
+.btn-ghost:hover { color: var(--cream); background: var(--bg-elevated); }
+.btn-sm { padding: 7px 14px; font-size: 13px; }
+.btn-lg { padding: 14px 28px; font-size: 16px; }
+.btn:disabled { opacity: 0.5; cursor: not-allowed; transform: none !important; }
+
+.card {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  transition: var(--transition);
+}
+.card:hover { border-color: var(--border-light); box-shadow: var(--shadow-card); }
+
+.input-field {
+  width: 100%;
+  background: var(--bg-elevated);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  padding: 11px 16px;
+  color: var(--text-primary);
+  font-size: 14px;
+  outline: none;
+  transition: var(--transition);
+}
+.input-field:focus { border-color: var(--amber); box-shadow: 0 0 0 3px rgba(200,131,42,0.12); }
+.input-field::placeholder { color: var(--text-muted); }
+
+.tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 4px 10px;
+  border-radius: 100px;
+  font-size: 12px;
+  font-weight: 500;
+  background: var(--bg-elevated);
+  border: 1px solid var(--border);
+  color: var(--text-secondary);
+}
+.tag-amber { background: rgba(200,131,42,0.12); border-color: rgba(200,131,42,0.3); color: var(--amber-light); }
+.tag-green { background: rgba(90,154,90,0.12); border-color: rgba(90,154,90,0.3); color: var(--green-light); }
+.tag-red { background: rgba(224,90,58,0.12); border-color: rgba(224,90,58,0.3); color: #e88066; }
+
+.section-title {
+  font-family: var(--font-display);
+  font-size: clamp(1.6rem, 3vw, 2.2rem);
+  font-weight: 700;
+  color: var(--cream);
+  line-height: 1.2;
+}
+
+.page-enter {
+  animation: pageEnter 0.35s ease forwards;
+}
+@keyframes pageEnter {
+  from { opacity: 0; transform: translateY(16px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.skeleton {
+  background: linear-gradient(90deg, var(--bg-elevated) 25%, var(--bg-card) 50%, var(--bg-elevated) 75%);
+  background-size: 200% 100%;
+  animation: shimmer 1.4s infinite;
+  border-radius: var(--radius-sm);
+}
+@keyframes shimmer {
+  0% { background-position: 200% 0; }
+  100% { background-position: -200% 0; }
+}
+
+/* Nutrition pill colors */
+.macro-cal { color: #e8966a; }
+.macro-protein { color: #7abf7a; }
+.macro-carbs { color: #7ab4e8; }
+.macro-fat { color: #e8c56a; }
