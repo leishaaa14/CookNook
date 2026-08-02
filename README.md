@@ -41,7 +41,7 @@ recipevault/
 │   │   ├── components/
 │   │   │   ├── layout/    # Navbar
 │   │   │   └── recipes/   # RecipeCard, IngredientInput, CalorieSlider
-│   │   ├── context/       # AuthContext 
+│   │   ├── context/       # AuthContext (global user state)
 │   │   ├── pages/         # Home, Login, Signup, Search, RecipeDetail, Dashboard, Saved, MealPlan, Profile
 │   │   └── utils/         # Axios instance with JWT interceptors
 │   ├── index.html
