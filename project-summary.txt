@@ -1,0 +1,143 @@
+CookNook / RecipeVault Project Summary
+
+1. Project Overview
+-------------------
+CookNook is a full-stack recipe discovery and meal planning app.
+The core idea is to let users enter ingredients they already have, filter recipes by calorie target and diet, save recipes, build a weekly meal plan, and generate a shopping list.
+
+2. Tech Stack
+-------------
+Frontend:
+- React 18 with Vite for fast development and build performance.
+- React Router 6 for client-side navigation and protected pages.
+- Axios for HTTP requests to the backend API.
+- React Hot Toast for user notifications.
+- Vanilla CSS with custom CSS variables and reusable button/card classes.
+
+Backend:
+- Node.js + Express for the API server.
+- Mongoose + MongoDB for persistent user data, meal plans, and shopping lists.
+- bcryptjs for password hashing.
+- JSON Web Tokens (JWT) for authentication.
+- dotenv for environment configuration.
+- Axios for calling the Spoonacular external recipe API.
+
+API / External Integration:
+- Spoonacular Food API powers recipe search, recipe detail data, nutrition, and ingredient autocomplete.
+- Backend uses Spoonacular endpoints and normalizes the responses for the frontend.
+
+3. What I changed / implemented
+---------------------------------
+A. Meal plan recipe navigation fix
+- Updated `frontend/src/pages/MealPlanPage.jsx` so each recipe card in the meal plan is wrapped in a React Router `Link`.
+- Clicking a recipe now navigates back to `/recipe/:id`, restoring the expected user flow.
+
+B. Shopping list clear action
+- Added a DELETE API route in `backend/src/routes/mealPlan.js` and a `clearShoppingList` controller in `backend/src/controllers/mealPlanController.js`.
+- Added frontend action in `frontend/src/pages/ShoppingListPage.jsx` to call this route and refresh the list.
+- This allows the user to clear the current week's stored shopping list items.
+
+C. Selective ingredient shopping list flow
+- Recipe detail page now supports selecting specific ingredients before adding them to the shopping list.
+- `frontend/src/pages/RecipeDetailPage.jsx` lets users toggle ingredients, select all, clear all, and save selected ingredient items.
+- `backend/src/controllers/mealPlanController.js` now receives selected ingredient data and merges it into the stored weekly shopping list.
+
+D. Backend shopping list grouping
+- Added a `groupIngredients` helper in `backend/src/controllers/mealPlanController.js`.
+- It normalizes ingredients by name/unit, sums quantities, and groups items by grocery category.
+- This improved the shopping list UI by organizing items into readable grocery categories.
+
+E. Recipe search and meal planning behavior
+- The app’s search flow is ingredient-first: users can enter kitchen ingredients, set calorie targets, and have results filtered appropriately.
+- The meal plan stores lightweight recipe metadata for each meal entry so recipes display quickly inside the planner.
+
+4. Key project pages and flows
+-------------------------------
+A. Search / Recipe Discovery
+- Users enter ingredients using `IngredientInput`, which supports suggestions and tag-style entry.
+- Search results show recipe cards with calories, used ingredient count, and missing ingredient count.
+- Recipe cards link to `/recipe/:id` for full details.
+
+B. Recipe Detail Page
+- Displays recipe title, image, nutrition macros, instructions, and ingredients.
+- Supports "Save Recipe" starring, adding to meal plan, and adding selected ingredients to the shopping list.
+- Uses React states for loading, tab selection, and ingredient selection.
+
+C. Meal Plan Page
+- Displays a weekly grid from Monday to Sunday.
+- Each day has breakfast, lunch, dinner, and snack sections.
+- Recipes added to the meal plan are stored in MongoDB per user and week.
+- Clicking within a recipe card now navigates back to the recipe detail page.
+- Allows removing any recipe from the plan.
+
+D. Shopping List Page
+- Retrieves the current week’s shopping list from the backend.
+- Shows grouped grocery categories and checkboxes for the user to mark items as picked up.
+- Includes tools for searching ingredients, copying the list, printing, clearing selections, and clearing the stored shopping list.
+
+5. Backend data models
+----------------------
+A. User
+- Stores profile details, email, password hash, and saved ingredient preferences.
+- Used for authentication and personalized saved data.
+
+B. MealPlan
+- Stores `user`, `weekStart`, and `days` object.
+- Each day contains meal entries with `recipeId`, `title`, `image`, `calories`, `servings`, and `mealType`.
+- This model enables weekly planning and retrieval by week.
+
+C. ShoppingList
+- Stores `user`, `weekStart`, and `items`.
+- Items are ingredient entries with name, amount, unit, category, recipeTitle, and optional image.
+- Supports manual shopping list persistence and clearing.
+
+6. Search and ranking logic
+----------------------------
+- The main search flow uses Spoonacular's `complexSearch` endpoint.
+- Results are ranked to favor recipes that match more ingredients the user entered.
+- The UI surfaces how many ingredients the user already has and how many are missing.
+- This helps users choose recipes they can cook with the least extra shopping.
+
+7. Shopping list tech details
+------------------------------
+- The shopping list is generated from either saved manual ingredients or from the current meal plan.
+- If manual selected ingredients exist, those are returned. Otherwise, the backend fetches recipe details from Spoonacular for all recipes in the meal plan.
+- Ingredients are grouped by grocery category using an aisle map, making the UI behave like a real grocery list.
+- The frontend also allows clearing the entire list and copying/printing it.
+
+8. What to say in an interview
+--------------------------------
+When asked:
+- "What problem does this solve?"
+  Say: It helps users cook with what they already have, manage daily calories, save recipes, plan meals for the week, and prepare a grocery list based on selected recipe ingredients.
+
+- "What is the architecture?"
+  Say: React+Vite frontend, Express backend, MongoDB persistence, and Spoonacular as the external recipe API. Auth is JWT-based.
+
+- "How did you make recipe search better?"
+  Say: The search prioritizes recipes based on ingredient overlap, not just matching score, so users see recipes that use more of their pantry first.
+
+- "How does the shopping list work?"
+  Say: It stores user-selected ingredients in MongoDB per week, groups them by grocery category, and falls back to recipe ingredients from the meal plan when no manual list exists.
+
+- "How did you improve the meal plan UX?"
+  Say: I made meal plan cards clickable and navigable to recipe details, added week navigation, and kept meal entries lightweight for quick rendering.
+
+9. Notes on the latest changes
+--------------------------------
+- Fixed meal plan recipe clickability by converting recipe cards into React Router `Link` elements.
+- Added the ability to clear the current shopping list from the shopping list page.
+- Implemented a shopping list save flow from recipe details where users can choose only the ingredients they want.
+- Added backend support to merge selected shopping items into a single weekly list and group them for better shopping organization.
+
+10. Summary of skills demonstrated
+-----------------------------------
+- Full-stack development with React, Node, Express, and MongoDB.
+- REST API design and JWT auth.
+- External API integration with Spoonacular.
+- Improving UX flows: clickable meal plan items, selective ingredient shopping, and grouped shopping lists.
+- Handling app state cleanly in React and server-side data normalization in Node.
+
+---
+
+File created: project-summary.txt

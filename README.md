@@ -41,13 +41,13 @@ recipevault/
 │   │   ├── components/
 │   │   │   ├── layout/    # Navbar
 │   │   │   └── recipes/   # RecipeCard, IngredientInput, CalorieSlider
-│   │   ├── context/       # AuthContext (global user state)
+│   │   ├── context/       # AuthContext 
 │   │   ├── pages/         # Home, Login, Signup, Search, RecipeDetail, Dashboard, Saved, MealPlan, Profile
 │   │   └── utils/         # Axios instance with JWT interceptors
 │   ├── index.html
 │   └── package.json
 │
-├── package.json           # Root scripts with concurrently
+├── package.json           
 └── README.md
 ```
 
